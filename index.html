@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#f5682c">
+  <link rel="shortcut icon" href="/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#f5682c">
+  <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Cloud Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <title>the simplecounter</title>
+
+</head>
+
+<body>
+  <div class="main">
+    <div>
+      <h1>the simplecounter</h1>
+      <div class="line"></div>
+      <p class="info">Paste your voiceover text below to calculate its runtime.<br>Hit [↵] to calculate and [s]
+        to switch between seconds and minutes view.</p>
+    </div>
+    <div>
+      <textarea style="resize: none" class="form-control" name="inputString" id="inputString" rows="5"
+        placeholder="&#10;&#10;Paste your voiceover here!"></textarea>
+    </div>
+
+    <div class="absatz">
+      <a class="btn-text" href="#result"><button id="btn" type="button" title="click to calculate"
+          class="btn btn-lg shadow-none" value="Calculate Runtime" onClick="countWords();">
+          Calculate Runtime</button></a>
+    </div>
+
+    <div class="container">
+      <div class="row" id="result">
+        <div class="col" id="words" title="copy to clipboard">
+          <p class="language">Words</p>
+          <input name="wordcount" id="wordcount" type="text" value="" size="5" placeholder="0" class="output"><br>total
+        </div>
+        <div class="col" id="color-de" title="copy to clipboard">
+          <p class="language">German</p>
+          <input name="runtime-de" id="runtime-de" type="text" value="" size="5" placeholder="00:00" class="output"><br>
+          <a class="minutes" href="#result" type="button" onClick="toSecDe();" id="minutesDe"
+            title="click to convert to minutes or seconds">minutes </a>
+          <svg class="imgclock" type="button" onClick="toSecDe();" id="minutesDeImg" viewBox="0 0 512 512">
+            <path
+              d="M504 255.531c.253 136.64-111.18 248.372-247.82 248.468-59.015.042-113.223-20.53-155.822-54.911-11.077-8.94-11.905-25.541-1.839-35.607l11.267-11.267c8.609-8.609 22.353-9.551 31.891-1.984C173.062 425.135 212.781 440 256 440c101.705 0 184-82.311 184-184 0-101.705-82.311-184-184-184-48.814 0-93.149 18.969-126.068 49.932l50.754 50.754c10.08 10.08 2.941 27.314-11.313 27.314H24c-8.837 0-16-7.163-16-16V38.627c0-14.254 17.234-21.393 27.314-11.314l49.372 49.372C129.209 34.136 189.552 8 256 8c136.81 0 247.747 110.78 248 247.531zm-180.912 78.784l9.823-12.63c8.138-10.463 6.253-25.542-4.21-33.679L288 256.349V152c0-13.255-10.745-24-24-24h-16c-13.255 0-24 10.745-24 24v135.651l65.409 50.874c10.463 8.137 25.541 6.253 33.679-4.21z">
+            </path>
+          </svg>
+        </div>
+        <div class="col" id="color-en" title="copy to clipboard">
+          <p class="language">English</p>
+          <input name="runtime-en" id="runtime-en" type="text" value="" size="5" placeholder="00:00" class="output"><br>
+          <a class="minutes" href="#result" type="button" onClick="toSecEn();" id="minutesEn"
+            title="click to convert to minutes or seconds">minutes </a>
+          <svg class="imgclock" type="button" onClick="toSecEn();" id="minutesEnImg" viewBox="0 0 512 512">
+            <path
+              d="M504 255.531c.253 136.64-111.18 248.372-247.82 248.468-59.015.042-113.223-20.53-155.822-54.911-11.077-8.94-11.905-25.541-1.839-35.607l11.267-11.267c8.609-8.609 22.353-9.551 31.891-1.984C173.062 425.135 212.781 440 256 440c101.705 0 184-82.311 184-184 0-101.705-82.311-184-184-184-48.814 0-93.149 18.969-126.068 49.932l50.754 50.754c10.08 10.08 2.941 27.314-11.313 27.314H24c-8.837 0-16-7.163-16-16V38.627c0-14.254 17.234-21.393 27.314-11.314l49.372 49.372C129.209 34.136 189.552 8 256 8c136.81 0 247.747 110.78 248 247.531zm-180.912 78.784l9.823-12.63c8.138-10.463 6.253-25.542-4.21-33.679L288 256.349V152c0-13.255-10.745-24-24-24h-16c-13.255 0-24 10.745-24 24v135.651l65.409 50.874c10.463 8.137 25.541 6.253 33.679-4.21z">
+            </path>
+          </svg>
+        </div>
+        <div class="col col-bl" id="characters" title="copy to clipboard">
+          <p class="language">Characters</p>
+          <input name="char" id="char" type="text" value="" size="5" placeholder="0" class="output"><br>max. 5000
+        </div>
+        <p class="warning">The result is approximate, your final runtime may differ.</p>
+      </div>
+    </div>
+
+    <div class="fixed-bottom" title="now with 5000 characters!">version 1.5 // <a class="imprint"
+        href="https://simpleshow.com/imprint/">imprint</a> <br> oliver.hillenbrand@simpleshow.com
+    </div>
+
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!-- Custom Script -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
